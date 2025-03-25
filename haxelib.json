@@ -1,0 +1,18 @@
+{
+    "url" : "https://github.com/c-g-dev/heaps-local-res",
+    "description":  "Use macros to split up your Heaps resource folder",
+    "dependencies":  {
+                         "heaps":  ""
+                     },
+    "version":  "1.0.0",
+    "tags": [
+        "heaps"
+    ],
+    "classPath":  "src",
+    "name":  "heaps-local-res",
+    "contributors":  [
+                         "cgdev"
+                     ],
+    "releasenote":  "Initial release",
+    "license":  "MIT"
+}
