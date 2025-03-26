@@ -1,11 +1,13 @@
 package heaps.localres;
 
-import haxe.io.Path;
+#if !macro
 import hxd.res.Resource;
 import hxd.fs.LoadedBitmap;
 import hxd.fs.FileEntry;
+#end
 import haxe.macro.Context;
 import haxe.io.Bytes;
+import haxe.io.Path;
 #if macro
 import sys.io.File;
 import sys.FileSystem;
@@ -30,7 +32,6 @@ class LocalRes
             trace("adding " + fullPath);
             Context.addResource(fullPath, File.getBytes(fullPath));
         }
-        //for each file in 
         return macro @:privateAccess new LocalRes($v{resPath});
         #end
         return macro null;
@@ -46,6 +47,11 @@ class LocalRes
     function new(prepend:String)
     {
         this.prepend = prepend;
+    }
+	
+	public function exists(name:String) : Bool
+    {
+        return haxe.Resource.listNames().contains(getResourceName(name));
     }
 
     public static function scoped(path:String) : LocalRes
@@ -75,6 +81,8 @@ class LocalRes
 	}
 	#end
 }
+
+#if !macro
 
 class ComponentEmbeddedFileEntry extends FileEntry
 {
@@ -163,3 +171,4 @@ class ComponentEmbeddedFileEntry extends FileEntry
         return bytes.length;
     }
 }
+#end
